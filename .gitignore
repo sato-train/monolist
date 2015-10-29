@@ -32,3 +32,6 @@ bower.json
 .powenv
 
 .DS_Store
+
+run.sh
+spring/*.pid
