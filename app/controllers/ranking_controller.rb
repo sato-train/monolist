@@ -1,22 +1,22 @@
 class RankingController < ApplicationController
 
   def have
-    ids = Have.group(:item_id).order('count_item_id desc').limit(10).count(:item_id)
-    @items = Item.find(ids.keys).each do |item|
-      item.user_count = ids[item.id]
-    end
-    @items = @items.sort_by do |item|
-      [- item.user_count]
+
+    haves = Have.group(:item_id).order('count_item_id desc').limit(10).count(:item_id)
+    
+    @items = Item.find(haves.keys).sort_by do |h|
+      h.user_count = haves[h.id]
+      haves.keys.index(h.id)
     end
   end
 
   def want
-    ids = Want.group(:item_id).order('count_item_id desc').limit(10).count(:item_id)
-    @items = Item.find(ids.keys).each do |item|
-      item.user_count = ids[item.id]
-    end
-    @items = @items.sort_by do |item|
-      [- item.user_count]
+
+    wants = Want.group(:item_id).order('count_item_id desc').limit(10).count(:item_id)
+
+    @items = Item.find(wants.keys).sort_by do |w|
+      w.user_count = wants[w.id]
+      wants.keys.index(w.id)
     end
   end
 
