@@ -28,7 +28,7 @@
         <div class="side-box-body">
           <% # TODO Haveしたユーザー一覧 %>
           <% @haved_users.each do |u| %>
-            <%= link_to gravatar_for( u, :size => 20, :alt => u.name), user_path(u) %>
+            <%= link_to gravatar_for( u, :size => 20, :alt => u.name), user_path(u), title: u.name %>
           <% end %>
         </div>
       </div>
@@ -38,7 +38,7 @@
           <% # TODO Wantしたユーザー一覧 %>
           <span class="gravatar">
             <% @wanted_users.each do |u| %>
-              <%= link_to gravatar_for( u, :size => 20, :alt => u.name), user_path(u) %>
+              <%= link_to gravatar_for( u, :size => 20, :alt => u.name), user_path(u), title: u.name %>
             <% end %>
           </span>
         </div>

@@ -18,7 +18,9 @@
     <% @items.each_with_index do |item,index| %>
         <tr>
           <th class="text-center" scope="row"><%= (index+1) %></th>
-          <td><%= item.title %></td>
+          <td>
+            <%= link_to item.title, item %>
+          </td>
           <td>
             <% if item.medium_image %>
               <%= image_tag( item.medium_image, alt:'' ) %>
@@ -26,7 +28,14 @@
               <%= image_tag("no-image.png" , alt: '') %>
             <% end %>
           </td>
-          <td class="text-center"><%= item.user_count %></td>
+          <td class="text-center">
+            <%= item.user_count %>
+            <% if current_user.have?(item) %>
+            <br /><span class="label label-warning">You want</span>
+            <% elsif current_user.want?(item) %>
+            <br /><span class="label label-success">You have</span>
+            <% end %>
+          </td>
         </tr>
     <% end %>
         </tbody>
