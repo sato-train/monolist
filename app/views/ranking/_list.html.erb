@@ -31,10 +31,10 @@
           <td class="text-center">
             <%= item.user_count %>
             <% if current_user.have?(item) %>
-            <br /><span class="label label-warning">You have</span>
+            <br /><span class="label label-success">You have</span>
             <% end %>
             <% if current_user.want?(item) %>
-            <br /><span class="label label-success">You want</span>
+            <br /><span class="label label-danger">You want</span>
             <% end %>
           </td>
         </tr>
