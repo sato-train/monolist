@@ -13,11 +13,11 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @user_ids = Ownership.where( item_id: @item.id, type:"Have");
-    @haved_users = User.where("id IN (?)", @user_ids.to_a)
+    @user_ids = Have.find_by( item_id: @item.id)
+    @haved_users = User.where("id IN (?)", @user_ids)
     
-    @user_ids = Ownership.where( item_id: @item.id, type:"Want");
-    @wanted_users = User.where("id IN (?)", @user_ids.to_a)
+    @user_ids = Want.find_by( item_id: @item.id)
+    @wanted_users = User.where("id IN (?)", @user_ids)
   end
 
   private
