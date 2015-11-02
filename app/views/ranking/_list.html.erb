@@ -1,11 +1,10 @@
 <%#= debug(@items) %>
-<%#= debug(@groups) %>
 <div class="container ranking">
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3><%= title %></h3>        
       </div>
-<% if @groups.present? %>
+<% if @items.present? %>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -16,21 +15,19 @@
           </tr>
         </thead>
         <tbody>
-    <% @groups.each_with_index do |g,index| %>
-      <% if @items.has_key?(g.id) %>
-          <tr>
-            <th class="text-center" scope="row"><%= (index+1) %></th>
-            <td><%= @items[g.id].title %></td>
-            <td>
-              <% if @items[g.id].medium_image %>
-                <%= image_tag( @items[g.id].medium_image, alt:'' ) %>
-              <% else %>
-                <%= image_tag("no-image.png" , alt: '') %>
-              <% end %>
-            </td>
-            <td class="text-center"><%= g.user_count %></td>
-          </tr>
-      <% end %>
+    <% @items.each_with_index do |item,index| %>
+        <tr>
+          <th class="text-center" scope="row"><%= (index+1) %></th>
+          <td><%= item.title %></td>
+          <td>
+            <% if item.medium_image %>
+              <%= image_tag( item.medium_image, alt:'' ) %>
+            <% else %>
+              <%= image_tag("no-image.png" , alt: '') %>
+            <% end %>
+          </td>
+          <td class="text-center"><%= item.user_count %></td>
+        </tr>
     <% end %>
         </tbody>
       </table>

@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   serialize :raw_info , Hash
+  attr_accessor :user_count
 
   has_many :ownerships, foreign_key: "item_id", dependent: :destroy
   has_many :users, through: :ownerships
@@ -13,5 +14,4 @@ class Item < ActiveRecord::Base
   has_many :haves, foreign_key: "item_id", dependent: :destroy
   #Itemをhaveしたユーザーの一覧。havesを用いて取得する	source: :userを用いる
   has_many :have_users, through: :haves, source: :user
-
 end
