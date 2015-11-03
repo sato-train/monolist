@@ -19,21 +19,21 @@
         <tr>
           <th class="text-center" scope="row"><%= (index+1) %></th>
           <td>
-            <% if item.medium_image %>
-              <%= image_tag( item.medium_image, alt: item.title) %>
+            <% if item[0].medium_image %>
+              <%= image_tag( item[0].medium_image, alt: item[0].title) %>
             <% else %>
-              <%= image_tag("no-image.png" , alt: item.title, size: "160x160") %>
+              <%= image_tag("no-image.png" , alt: item[0].title, size: "160x160") %>
             <% end %>
           </td>
           <td>
-            <%= link_to item.title, item %>
+            <%= link_to item[0].title, item[0] %>
           </td>
           <td class="text-center">
-            <%= item.user_count %>
-            <% if current_user.have?(item) %>
+            <%= item[1] %>
+            <% if current_user.have?(item[0]) %>
             <br /><span class="label label-success">You have</span>
             <% end %>
-            <% if current_user.want?(item) %>
+            <% if current_user.want?(item[0]) %>
             <br /><span class="label label-danger">You want</span>
             <% end %>
           </td>
